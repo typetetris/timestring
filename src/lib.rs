@@ -4,7 +4,7 @@ extern "C" {
 
 pub fn timestring(hour: bool) -> String {
     let mut buffer: Vec<u8> = vec![0;25];
-    let c_hour = if hour { 1 } else { 0 };
+    let c_hour: std::os::raw::c_int = if hour { 1 } else { 0 };
     unsafe { c_timestring(c_hour, buffer.as_mut_ptr() as *mut i8); }
 
     buffer.pop(); // remove nul byte
